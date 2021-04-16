@@ -7,6 +7,7 @@
 
 body {
     background: #F6F1E7;
+    color: #1b1e23;
 }
 
 /* header selectors */
@@ -44,7 +45,12 @@ main {
 .start-btn {
     text-align: center;
     font-size: 5rem;
-    display: none;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    padding: 5px;
 }
 
 ul {
@@ -73,8 +79,14 @@ h2 {
 h3 {
     font-size: 2rem;
     padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
 }
 
 #correct {
-    background: #
+    background: #5aa17f;
+}
+
+#incorrect {
+    background: #f26350;
 }
