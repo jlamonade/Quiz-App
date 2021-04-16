@@ -20,7 +20,16 @@ var timer = document.querySelector(".timer");
     // questions/answers
 
 // Functions =========================================================
+function hideAllQuestionElements () {
+    questionElementsList.forEach((element) => element.style = "display: none;")
+}
 
+function showAllQuestionElements() {
+    questionElementsList.forEach((element) => element.style = "display: inherit;")
+}
+
+hideAllQuestionElements();
+showAllQuestionElements();
 
 // User Interactions =================================================
     // start button is clicked
