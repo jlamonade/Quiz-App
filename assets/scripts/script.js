@@ -9,7 +9,7 @@ var incorrectAnswer = document.querySelector("#incorrect");
 var currentScore = document.querySelector(".current-score");
 var timer = document.querySelector(".timer");
 
-
+var questionElementsList = [question, answerList, correctAnswer, incorrectAnswer];
 
 
 // Build
