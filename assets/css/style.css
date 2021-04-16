@@ -25,6 +25,10 @@ header {
     font-size: 2rem;
 }
 
+.button {
+    cursor: pointer;
+}
+
 /* main selectors */
 
 main {
