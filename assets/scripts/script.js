@@ -1,5 +1,14 @@
 // Dependencies (HTML Elements, Libraries, etc.) =====================
 // Starting Data
+var startBtn = document.querySelector(".start-btn");
+var question = document.querySelector("#question");
+var answerList = document.querySelector(".answer-choices");
+var answerChoices = document.querySelectorAll(".choice");
+var correctAnswer = document.querySelector("#correct");
+var incorrectAnswer = document.querySelector("#incorrect");
+var currentScore = document.querySelector(".current-score");
+var timer = document.querySelector(".timer");
+
 
 
 

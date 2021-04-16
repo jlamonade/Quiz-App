@@ -29,12 +29,16 @@ main {
 
 /* card selectors */
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     padding: 40px;
     margin: 0 auto;
 }
 
 .start-btn {
     text-align: center;
+    font-size: 5rem;
     display: none;
 }
 
