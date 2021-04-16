@@ -7,4 +7,26 @@
 header {
     display: flex;
     justify-content: space-between;
+    padding: 30px;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 800px;
+    display: block;
+}
+
+/* card selectors */
+.card {
+    padding: 40px;
+    margin: 0 auto;
+}
+
+.start-btn {
+    text-align: center;
+    font-size: large;
+}
+
+li {
+    list-style-type: none;
 }
