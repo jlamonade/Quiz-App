@@ -4,7 +4,7 @@ var startButton = document.querySelector("#start");
 var highScoresButtonDiv = document.querySelector(".button");
 var playButtonDiv = document.querySelector(".play");
 var startDiv = document.querySelector(".start-btn");
-var question = document.querySelector("#question");
+var question = document.querySelector("#question-title");
 var answerOl = document.querySelector(".answer-choices");
 var answerChoices = document.querySelectorAll(".choice");
 var correctAnswer = document.querySelector("#correct");
@@ -266,7 +266,7 @@ function playButtonActions() {
     // start button is clicked
         // start button disappears
         // game will start
-hideAllQuestionElements();
+// hideAllQuestionElements();
 // showAllQuestionElements();
 // hideStartDiv();
 
