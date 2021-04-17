@@ -68,6 +68,9 @@ function validateUserChoice (isAnswer) {
         scoreDiv.textContent = currentScore;
     } else {
         timeLeft -= 10;
+        if (timeLeft > 0) {
+            timer.textContent = "Time: " + timeLeft;
+        }
     }
 }
 
@@ -138,11 +141,11 @@ function startTimer() {
     timer.textContent = "Time: " + timeLeft;
     var timeInterval = setInterval(function() {
         timeLeft--;
-        timer.textContent = "Time: " + timeLeft;
-
-        if (timeLeft <= 0) {
-            timeLeft = 100;
+        if (timeLeft > 0) {
+            timer.textContent = "Time: " + timeLeft;
+        } else {
             timer.textContent = "Time: 0";
+            timeLeft = 100;
             clearInterval(timeInterval);
             hideAllQuestionElements();
             showStartDiv();
