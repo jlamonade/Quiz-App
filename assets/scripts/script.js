@@ -8,10 +8,28 @@ var correctAnswer = document.querySelector("#correct");
 var incorrectAnswer = document.querySelector("#incorrect");
 var currentScore = document.querySelector(".current-score");
 var timer = document.querySelector(".timer");
+var questionList = [];
 
 
 
 // Build
+
+// Question constructor
+
+function Question (question, answers, correctAnswer) {
+    this.question = question;
+    this.answers = answers;
+    this.correctAnswer = correctAnswer;
+}
+
+function addQuestionToList (question, answers, correctAnswer) {
+    var question = new Question(question, answers, correctAnswer);
+    questionList.push(question);
+}
+
+addQuestionToList("How?", ["0", "1", "3", "4"], 2);
+addQuestionToList("How?", ["0", "1", "3", "4"], 2);
+addQuestionToList("How?", ["0", "1", "3", "4"], 2);
 
 
 // Starting Data =====================================================
