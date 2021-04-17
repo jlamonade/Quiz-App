@@ -2,6 +2,7 @@
 // Starting Data
 var startButton = document.querySelector("#start");
 var highScoresButtonDiv = document.querySelector(".button");
+var playButtonDiv = document.querySelector(".play");
 var startDiv = document.querySelector(".start-btn");
 var question = document.querySelector("#question");
 var answerOl = document.querySelector(".answer-choices");
@@ -144,6 +145,10 @@ function hideScoreDiv () {
     scoreDiv.style = "display: none;";
 }
 
+function hidePlayButtonDiv () {
+    playButtonDiv.style = "display: none;"
+}
+
 // functions to show elements
 
 function showQuestion () {
@@ -184,6 +189,10 @@ function showHighScoresButtonsDiv () {
 
 function showScoreDiv () {
     scoreDiv.style = "display: block;";
+}
+
+function showPlayButtonDiv () {
+    playButtonDiv.style = "display: block;"
 }
 
 // show/hide testing area
@@ -252,10 +261,20 @@ startButton.addEventListener("click", showAllQuestionElements);
 startButton.addEventListener("click", hideStartDiv);
 startButton.addEventListener("click", showScoreDiv);
 startButton.addEventListener("click", showTimer);
+startButton.addEventListener("click", hideHighScoresButtonsDiv);
 
             // when user clicks on show high-scores
                 // high scores is displayed
 highScoresButtonDiv.addEventListener("click", showHighScoresList);
+highScoresButtonDiv.addEventListener("click", hideHighScoresButtonsDiv);
+highScoresButtonDiv.addEventListener("click", showPlayButtonDiv);
+
+            // when user clicks on play button high scores view
+                // start button appears and button for high scores appears
+playButtonDiv.addEventListener("click", showHighScoresButtonsDiv);
+playButtonDiv.addEventListener("click", hidePlayButtonDiv);
+playButtonDiv.addEventListener("click", hideHighScoresDiv);
+playButtonDiv.addEventListener("click", showStartDiv);
             
             // user clicks on an answer
             // record outcome/decrement time
