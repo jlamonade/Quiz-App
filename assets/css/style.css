@@ -112,6 +112,10 @@ h3 {
 
 /* high score selectors */
 
+.highscores {
+    display: none;
+}
+
 #high-score-title {
     font-size: 3rem;
     text-align: center;
@@ -121,6 +125,7 @@ h3 {
 
 .form {
     text-align: center;
+    display: none;
 }
 
 #form-title {

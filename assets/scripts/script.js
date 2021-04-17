@@ -1,6 +1,7 @@
 // Dependencies (HTML Elements, Libraries, etc.) =====================
 // Starting Data
 var startButton = document.querySelector("#start");
+var highScoresButton = document.querySelector(".button");
 var startDiv = document.querySelector(".start-btn");
 var question = document.querySelector("#question");
 var answerOl = document.querySelector(".answer-choices");
@@ -141,15 +142,15 @@ function showAnswers () {
 }
 
 function showCorrectAnswer () {
-    correctAnswer.style = "display: inherit;"
+    correctAnswer.style = "display: block;"
 }
 
 function showIncorrectAnswer () {
-    incorrectAnswer.style = "display: inherit;"
+    incorrectAnswer.style = "display: block;"
 }
 
 function showStartDiv () {
-    startDiv.style = "display: revert;"
+    startDiv.style = "display: block;"
 }
 
 function showHighScoresDiv () {
@@ -161,9 +162,9 @@ function showFormDiv () {
 }
 
 // show/hide testing area
-hideHighScoresDiv();
-hideFormDiv();
-showHighScoresDiv();
+// hideHighScoresDiv();
+// hideFormDiv();
+// showHighScoresDiv();
 // showFormDiv();
 
 // showIncorrectAnswer();
@@ -173,8 +174,6 @@ showHighScoresDiv();
 // populateQuestionElements();
 
 // timer functions
-
-
 
 function startTimer() {
     function stopTimer (clearThisTimer) {clearInterval(clearThisTimer)};
@@ -193,6 +192,14 @@ function startTimer() {
     }, 1000)
 }
 
+// high score functions
+
+function showHighScoresList() {
+    hideStartDiv();
+    showHighScoresDiv();
+    // showhighscores
+}
+
 
 // User Interactions =================================================
     // start button is clicked
@@ -200,7 +207,7 @@ function startTimer() {
         // game will start
 hideAllQuestionElements();
 // showAllQuestionElements();
-hideStartDiv();
+// hideStartDiv();
 
             // timer starts
             // questions appear
@@ -209,6 +216,10 @@ startButton.addEventListener("click", startTimer);
 startButton.addEventListener("click", populateQuestionElements);
 startButton.addEventListener("click", showAllQuestionElements);
 startButton.addEventListener("click", hideStartDiv);
+
+            // when user clicks on show high-scores
+                // high scores is displayed
+highScoresButton.addEventListener("click", showHighScoresList);
             
             // user clicks on an answer
             // record outcome/decrement time
