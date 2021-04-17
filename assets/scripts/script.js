@@ -122,6 +122,14 @@ function hideQuestion () {
     question.style = "display: none;"
 }
 
+function hideHighScoresDiv () {
+    highScoresDiv.style = "display: none;"
+}
+
+function hideFormDiv () {
+    formDiv.style = "display: none;"
+}
+
 // functions to show elements
 
 function showQuestion () {
@@ -144,8 +152,20 @@ function showStartDiv () {
     startDiv.style = "display: revert;"
 }
 
+function showHighScoresDiv () {
+    highScoresDiv.style = "display: block;"
+}
 
-// function testing area
+function showFormDiv () {
+    formDiv.style = "display: block;"
+}
+
+// show/hide testing area
+hideHighScoresDiv();
+hideFormDiv();
+showHighScoresDiv();
+// showFormDiv();
+
 // showIncorrectAnswer();
 // showCorrectAnswer();
 // hideAllQuestionElements();
