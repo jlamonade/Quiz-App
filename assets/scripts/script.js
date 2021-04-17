@@ -129,9 +129,9 @@ function showStartDiv () {
 
 
 // function testing area
-showIncorrectAnswer();
-showCorrectAnswer();
-hideAllQuestionElements();
+// showIncorrectAnswer();
+// showCorrectAnswer();
+// hideAllQuestionElements();
 // showAllQuestionElements();
 // populateQuestionElements();
 
@@ -158,6 +158,7 @@ function startTimer() {
     // start button is clicked
         // start button disappears
         // game will start
+hideAllQuestionElements();
             // timer starts
             // questions appear
             // answers appear
