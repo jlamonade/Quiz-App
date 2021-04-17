@@ -70,6 +70,8 @@ function validateUserChoice (isAnswer) {
         timeLeft -= 10;
         if (timeLeft > 0) {
             timer.textContent = "Time: " + timeLeft;
+        } else {
+            timer.textContent = "Time: 0";
         }
     }
 }
@@ -137,16 +139,19 @@ function showStartDiv () {
 
 // timer functions
 
+
+
 function startTimer() {
+    function stopTimer (clearThisTimer) {clearInterval(clearThisTimer)};
     timer.textContent = "Time: " + timeLeft;
     var timeInterval = setInterval(function() {
         timeLeft--;
         if (timeLeft > 0) {
             timer.textContent = "Time: " + timeLeft;
         } else {
+            stopTimer(timeInterval);
             timer.textContent = "Time: 0";
             timeLeft = 100;
-            clearInterval(timeInterval);
             hideAllQuestionElements();
             showStartDiv();
         }
@@ -159,7 +164,7 @@ function startTimer() {
         // start button disappears
         // game will start
 hideAllQuestionElements();
-showAllQuestionElements();
+// showAllQuestionElements();
             // timer starts
             // questions appear
             // answers appear
