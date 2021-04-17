@@ -4,6 +4,7 @@ var startButton = document.querySelector("#start");
 var highScoresButtonDiv = document.querySelector(".button");
 var playButtonDiv = document.querySelector(".play");
 var startDiv = document.querySelector(".start-btn");
+var questionDiv = document.querySelector(".question");
 var question = document.querySelector("#question-title");
 var answerOl = document.querySelector(".answer-choices");
 var answerChoices = document.querySelectorAll(".choice");
@@ -91,23 +92,14 @@ function validateUserChoice (isAnswer) {
 }
 
 function hideAllQuestionElements () {
-    hideQuestion();
-    hideAnswers();
+    questionDiv.style = "display: none;";
 }
 
 function showAllQuestionElements() {
-    showQuestion();
-    showAnswers();
+    questionDiv.style = "display: block;";
 }
 
 // functions to hide elements
-function hideQuestion () {
-    question.style = "display: none;";
-}
-
-function hideAnswers () {
-    answerOl.style = "display: none;";
-}
 
 function hideCorrectAnswer () {
     correctAnswer.style = "display: none;";
@@ -150,14 +142,6 @@ function hidePlayButtonDiv () {
 }
 
 // functions to show elements
-
-function showQuestion () {
-    question.style = "display: block;";
-}
-
-function showAnswers () {
-    answerOl.style = "display: block;";
-}
 
 function showCorrectAnswer () {
     correctAnswer.style = "display: block;";
@@ -230,7 +214,6 @@ function startTimer() {
             timer.textContent = "Time: 0";
             timeLeft = 100;
             hideAllQuestionElements();
-            showStartDiv();
         }
     }, 1000)
 }
