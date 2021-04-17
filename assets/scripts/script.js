@@ -9,7 +9,6 @@ var incorrectAnswer = document.querySelector("#incorrect");
 var currentScore = document.querySelector(".current-score");
 var timer = document.querySelector(".timer");
 
-var questionElementsList = [question, answerList, correctAnswer, incorrectAnswer];
 
 
 // Build
@@ -20,12 +19,58 @@ var questionElementsList = [question, answerList, correctAnswer, incorrectAnswer
     // questions/answers
 
 // Functions =========================================================
+
 function hideAllQuestionElements () {
-    questionElementsList.forEach((element) => element.style = "display: none;")
+    hideQuestion();
+    hideAnswers();
 }
 
 function showAllQuestionElements() {
-    questionElementsList.forEach((element) => element.style = "display: inherit;")
+    showQuestion();
+    showAnswers();
+}
+
+// functions to hide elements
+function hideQuestion () {
+    question.style = "display: none;"
+}
+
+function hideAnswers () {
+    answerList.style = "display: none;"
+}
+
+function hideCorrectAnswer () {
+    correctAnswer.style = "display: none;"
+}
+
+function hideIncorrectAnswer () {
+    incorrectAnswer.style = "display: none;"
+}
+
+function hideStartBtn () {
+    startBtn.style = "display: none;"
+}
+
+// functions to show elements
+
+function showQuestion () {
+    question.style = "display: inherit;"
+}
+
+function showAnswers () {
+    answerList.style = "display: inherit;"
+}
+
+function showCorrectAnswer () {
+    correctAnswer.style = "display: inherit;"
+}
+
+function showIncorrectAnswer () {
+    incorrectAnswer.style = "display: inherit;"
+}
+
+function showStartButton () {
+    startBtn.style = "display: inherit;"
 }
 
 hideAllQuestionElements();
