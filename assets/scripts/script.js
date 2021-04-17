@@ -235,14 +235,32 @@ function startTimer() {
     }, 1000)
 }
 
-// high score functions
+// page view functions
 
-function showHighScoresList() {
+function showHighScoresButtonActions () {
     hideStartDiv();
     showHighScoresDiv();
+    hideHighScoresButtonsDiv();
+    showPlayButtonDiv();
     // showhighscores
 }
 
+function startButtonActions () {
+    hideStartDiv();
+    startTimer();
+    populateQuestionElements();
+    showScoreDiv();
+    showTimer();
+    hideHighScoresButtonsDiv();
+    showAllQuestionElements();
+}
+
+function playButtonActions() {
+    showHighScoresButtonsDiv();
+    hidePlayButtonDiv();
+    hideHighScoresDiv();
+    showStartDiv();
+}
 
 // User Interactions =================================================
     // start button is clicked
@@ -255,26 +273,15 @@ hideAllQuestionElements();
             // timer starts
             // questions appear
             // answers appear
-startButton.addEventListener("click", startTimer);
-startButton.addEventListener("click", populateQuestionElements);
-startButton.addEventListener("click", showAllQuestionElements);
-startButton.addEventListener("click", hideStartDiv);
-startButton.addEventListener("click", showScoreDiv);
-startButton.addEventListener("click", showTimer);
-startButton.addEventListener("click", hideHighScoresButtonsDiv);
+startButton.addEventListener("click", startButtonActions);
 
             // when user clicks on show high-scores
                 // high scores is displayed
-highScoresButtonDiv.addEventListener("click", showHighScoresList);
-highScoresButtonDiv.addEventListener("click", hideHighScoresButtonsDiv);
-highScoresButtonDiv.addEventListener("click", showPlayButtonDiv);
+highScoresButtonDiv.addEventListener("click", showHighScoresButtonActions);
 
             // when user clicks on play button high scores view
                 // start button appears and button for high scores appears
-playButtonDiv.addEventListener("click", showHighScoresButtonsDiv);
-playButtonDiv.addEventListener("click", hidePlayButtonDiv);
-playButtonDiv.addEventListener("click", hideHighScoresDiv);
-playButtonDiv.addEventListener("click", showStartDiv);
+playButtonDiv.addEventListener("click", playButtonActions);
             
             // user clicks on an answer
             // record outcome/decrement time
