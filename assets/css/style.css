@@ -76,6 +76,7 @@ li {
     padding: 10px;
     border-radius: 5px;
     background: #D0DEE5;
+    cursor: pointer;
 }
 
 h2 {

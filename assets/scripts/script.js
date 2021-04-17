@@ -3,15 +3,15 @@
 var startButton = document.querySelector("#start");
 var startDiv = document.querySelector(".start-btn");
 var question = document.querySelector("#question");
-var answerList = document.querySelector(".answer-choices");
+var answerOl = document.querySelector(".answer-choices");
 var answerChoices = document.querySelectorAll(".choice");
 var correctAnswer = document.querySelector("#correct");
 var incorrectAnswer = document.querySelector("#incorrect");
-var currentScore = document.querySelector(".current-score");
+var scoreDiv = document.querySelector(".current-score");
 var timer = document.querySelector(".timer");
 var questionList = [];
 
-
+var currentScore = 0;
 
 // Build
 
@@ -59,10 +59,16 @@ function generateRandomQuestionIndex () {
 // Starting Data =====================================================
     // high scores are read from external data
     // questions/answers
+var timeLeft = 100;
 
 // Functions =========================================================
-function validateUserChoice (question) {
-    
+function validateUserChoice (isAnswer) {
+    if (isAnswer == "true") {
+        currentScore++;
+        scoreDiv.textContent = currentScore;
+    } else {
+        timeLeft -= 10;
+    }
 }
 
 function hideAllQuestionElements () {
@@ -81,7 +87,7 @@ function hideQuestion () {
 }
 
 function hideAnswers () {
-    answerList.style = "display: none;"
+    answerOl.style = "display: none;"
 }
 
 function hideCorrectAnswer () {
@@ -103,7 +109,7 @@ function showQuestion () {
 }
 
 function showAnswers () {
-    answerList.style = "display: inherit;"
+    answerOl.style = "display: inherit;"
 }
 
 function showCorrectAnswer () {
@@ -129,13 +135,14 @@ hideAllQuestionElements();
 // timer functions
 
 function startTimer() {
-    var timeLeft = 3;
     timer.textContent = "Time: " + timeLeft;
     var timeInterval = setInterval(function() {
         timeLeft--;
         timer.textContent = "Time: " + timeLeft;
 
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
+            timeLeft = 100;
+            timer.textContent = "Time: 0";
             clearInterval(timeInterval);
             hideAllQuestionElements();
             showStartDiv();
@@ -158,6 +165,11 @@ startButton.addEventListener("click", hideStartDiv);
             
             // user clicks on an answer
             // record outcome/decrement time
+answerChoices[0].addEventListener("click", function() {validateUserChoice(this.dataset.correct)});
+answerChoices[1].addEventListener("click", function() {validateUserChoice(this.dataset.correct)});
+answerChoices[2].addEventListener("click", function() {validateUserChoice(this.dataset.correct)});
+answerChoices[3].addEventListener("click", function() {validateUserChoice(this.dataset.correct)});
+            
             // show next question
         // when timer runs out
             // display user score
