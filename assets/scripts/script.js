@@ -1,14 +1,15 @@
 // Dependencies (HTML Elements, Libraries, etc.) =====================
 // Starting Data
 var startButton = document.querySelector("#start");
-var highScoresButton = document.querySelector(".button");
+var highScoresButtonDiv = document.querySelector(".button");
 var startDiv = document.querySelector(".start-btn");
 var question = document.querySelector("#question");
 var answerOl = document.querySelector(".answer-choices");
 var answerChoices = document.querySelectorAll(".choice");
 var correctAnswer = document.querySelector("#correct");
 var incorrectAnswer = document.querySelector("#incorrect");
-var scoreDiv = document.querySelector(".current-score");
+var scoreDiv = document.querySelector(".score");
+var currentScoreSpan = document.querySelector(".current-score");
 var timer = document.querySelector(".timer");
 var highScoresDiv = document.querySelector(".highscores");
 var formDiv = document.querySelector(".form");
@@ -77,7 +78,7 @@ var timeLeft = 100;
 function validateUserChoice (isAnswer) {
     if (isAnswer == "true") {
         currentScore++;
-        scoreDiv.textContent = currentScore;
+        currentScoreSpan.textContent = currentScore;
     } else {
         timeLeft -= 10;
         if (timeLeft > 0) {
@@ -100,68 +101,101 @@ function showAllQuestionElements() {
 
 // functions to hide elements
 function hideQuestion () {
-    question.style = "display: none;"
+    question.style = "display: none;";
 }
 
 function hideAnswers () {
-    answerOl.style = "display: none;"
+    answerOl.style = "display: none;";
 }
 
 function hideCorrectAnswer () {
-    correctAnswer.style = "display: none;"
+    correctAnswer.style = "display: none;";
 }
 
 function hideIncorrectAnswer () {
-    incorrectAnswer.style = "display: none;"
+    incorrectAnswer.style = "display: none;";
 }
 
 function hideStartDiv () {
-    startDiv.style = "display: none;"
+    startDiv.style = "display: none;";
 }
 
 function hideQuestion () {
-    question.style = "display: none;"
+    question.style = "display: none;";
 }
 
 function hideHighScoresDiv () {
-    highScoresDiv.style = "display: none;"
+    highScoresDiv.style = "display: none;";
 }
 
 function hideFormDiv () {
-    formDiv.style = "display: none;"
+    formDiv.style = "display: none;";
+}
+
+function hideTimer () {
+    timer.style = "display: none;";
+}
+
+function hideHighScoresButtonsDiv () {
+    highScoresButtonDiv.style = "display: none;";
+}
+
+function hideScoreDiv () {
+    scoreDiv.style = "display: none;";
 }
 
 // functions to show elements
 
 function showQuestion () {
-    question.style = "display: block;"
+    question.style = "display: block;";
 }
 
 function showAnswers () {
-    answerOl.style = "display: block;"
+    answerOl.style = "display: block;";
 }
 
 function showCorrectAnswer () {
-    correctAnswer.style = "display: block;"
+    correctAnswer.style = "display: block;";
 }
 
 function showIncorrectAnswer () {
-    incorrectAnswer.style = "display: block;"
+    incorrectAnswer.style = "display: block;";
 }
 
 function showStartDiv () {
-    startDiv.style = "display: block;"
+    startDiv.style = "display: block;";
 }
 
 function showHighScoresDiv () {
-    highScoresDiv.style = "display: block;"
+    highScoresDiv.style = "display: block;";
 }
 
 function showFormDiv () {
-    formDiv.style = "display: block;"
+    formDiv.style = "display: block;";
+}
+
+function showTimer () {
+    timer.style = "display: block;";
+}
+
+function showHighScoresButtonsDiv () {
+    highScoresButtonDiv.style = "display: block;";
+}
+
+function showScoreDiv () {
+    scoreDiv.style = "display: block;";
 }
 
 // show/hide testing area
+
+// hideHighScoresButtonsDiv();
+// hideScoreDiv();
+// hideTimer();
+// showHighScoresButtonsDiv();
+// showScoreDiv();
+// showTimer();
+
+
 // hideHighScoresDiv();
 // hideFormDiv();
 // showHighScoresDiv();
@@ -219,7 +253,7 @@ startButton.addEventListener("click", hideStartDiv);
 
             // when user clicks on show high-scores
                 // high scores is displayed
-highScoresButton.addEventListener("click", showHighScoresList);
+highScoresButtonDiv.addEventListener("click", showHighScoresList);
             
             // user clicks on an answer
             // record outcome/decrement time
