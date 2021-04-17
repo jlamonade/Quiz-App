@@ -19,7 +19,6 @@ var timer = document.querySelector(".timer");
     // questions/answers
 
 // Functions =========================================================
-
 function hideAllQuestionElements () {
     hideQuestion();
     hideAnswers();
@@ -74,7 +73,7 @@ function showStartButton () {
 }
 
 hideAllQuestionElements();
-showAllQuestionElements();
+// showAllQuestionElements();
 
 // timer functions
 
@@ -92,7 +91,10 @@ function startTimer() {
     }, 1000)
 }
 
-startTimer(); 
+// event listeners
+
+startBtn.addEventListener("click", startTimer);
+startBtn.addEventListener("click", showAllQuestionElements);
 
 // User Interactions =================================================
     // start button is clicked
