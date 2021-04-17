@@ -31,6 +31,16 @@ addQuestionToList("How?", ["0", "1", "3", "4"], 2);
 addQuestionToList("How?", ["0", "1", "3", "4"], 2);
 addQuestionToList("How?", ["0", "1", "3", "4"], 2);
 
+function populateQuestionElements () {
+    question.textContent = questionList[0].question;
+    answerChoices[0].textContent = questionList[0].answers[0];
+    answerChoices[1].textContent = questionList[0].answers[1];
+    answerChoices[2].textContent = questionList[0].answers[2];
+    answerChoices[3].textContent = questionList[0].answers[3];
+}
+
+
+
 
 // Starting Data =====================================================
     // high scores are read from external data
@@ -91,7 +101,8 @@ function showStartButton () {
 }
 
 hideAllQuestionElements();
-// showAllQuestionElements();
+showAllQuestionElements();
+populateQuestionElements();
 
 // timer functions
 
