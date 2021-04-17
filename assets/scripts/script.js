@@ -36,13 +36,20 @@ addQuestionToList("Where?", ["0", "1", "3", "4"], 2);
 addQuestionToList("Why?", ["0", "1", "3", "4"], 2);
 
 function populateQuestionElements () {
-    var chosenQuestion = questionList[generateRandomQuestionIndex()];
+    var chosenQuestion = getRandomQuestion();
+    var correctIndex = chosenQuestion.correctAnswer;
     question.textContent = chosenQuestion.question;
     for (var i = 0; i < answerChoices.length; i++) {
         answerChoices[i].textContent = chosenQuestion.answers[i];
+        answerChoices[i].setAttribute("data-correct", "false");
     }
-    console.log(chosenQuestion.correctAnswer);
+    answerChoices[correctIndex].setAttribute("data-correct", "true");
 }
+
+function getRandomQuestion () {
+    var randomQuestion = questionList[generateRandomQuestionIndex()];
+    return randomQuestion;
+} 
 
 function generateRandomQuestionIndex () {
     var randomIndex = Math.floor(Math.random() * questionList.length);
@@ -54,6 +61,10 @@ function generateRandomQuestionIndex () {
     // questions/answers
 
 // Functions =========================================================
+function validateUserChoice (question) {
+    
+}
+
 function hideAllQuestionElements () {
     hideQuestion();
     hideAnswers();
@@ -113,7 +124,7 @@ showIncorrectAnswer();
 showCorrectAnswer();
 hideAllQuestionElements();
 // showAllQuestionElements();
-populateQuestionElements();
+// populateQuestionElements();
 
 // timer functions
 
@@ -141,6 +152,7 @@ function startTimer() {
             // questions appear
             // answers appear
 startButton.addEventListener("click", startTimer);
+startButton.addEventListener("click", populateQuestionElements);
 startButton.addEventListener("click", showAllQuestionElements);
 startButton.addEventListener("click", hideStartDiv);
             
