@@ -13,16 +13,22 @@ body {
 /* header selectors */
 header {
     display: flex;
-    justify-content: space-between;
-    padding: 30px;
+    padding: 20px;
     background: #988E92;
+}
+
+.button,
+.timer,
+.score,
+.current-score {
+    font-size: 2rem;
 }
 
 .button, 
 .timer, 
-.score, 
-.current-score{
-    font-size: 2rem;
+.score {
+    margin: 10px;
+    padding: auto;
 }
 
 .button {
@@ -89,8 +95,10 @@ h3 {
 
 #correct {
     background: #5aa17f;
+    display: none;
 }
 
 #incorrect {
     background: #f26350;
+    display: none;
 }

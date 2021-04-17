@@ -76,6 +76,24 @@ function showStartButton () {
 hideAllQuestionElements();
 showAllQuestionElements();
 
+// timer functions
+
+function startTimer() {
+    var timeLeft = 3;
+    timer.textContent = "Time: " + timeLeft;
+    var timeInterval = setInterval(function() {
+        timeLeft--;
+        timer.textContent = "Time: " + timeLeft;
+
+        if (timeLeft === 0) {
+            clearInterval(timeInterval);
+            hideAllQuestionElements();
+        }
+    }, 1000)
+}
+
+startTimer(); 
+
 // User Interactions =================================================
     // start button is clicked
         // start button disappears
