@@ -9,13 +9,24 @@ var correctAnswer = document.querySelector("#correct");
 var incorrectAnswer = document.querySelector("#incorrect");
 var scoreDiv = document.querySelector(".current-score");
 var timer = document.querySelector(".timer");
-var questionList = [];
+var highScoresDiv = document.querySelector(".highscores");
+var formDiv = document.querySelector(".form");
 
+
+var questionList = [];
 var currentScore = 0;
 
 // Build
 
 // Question constructor
+
+function saveHighScore () {
+    // write high score to external file
+}
+
+function showHighScores() {
+    // adds high score li element to .scores-list
+}
 
 function Question (question, answers, correctAnswer) {
     this.question = question;
@@ -107,6 +118,10 @@ function hideStartDiv () {
     startDiv.style = "display: none;"
 }
 
+function hideQuestion () {
+    question.style = "display: none;"
+}
+
 // functions to show elements
 
 function showQuestion () {
@@ -165,6 +180,8 @@ function startTimer() {
         // game will start
 hideAllQuestionElements();
 // showAllQuestionElements();
+hideStartDiv();
+
             // timer starts
             // questions appear
             // answers appear

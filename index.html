@@ -17,12 +17,12 @@
     <main>
         <div class="card">
 
-            <!-- start button display none for now -->
+            <!-- start button display -->
             <div class="start-btn">
                 <button id="start">START</button>
             </div>
             
-            <!-- questions display none for now -->
+            <!-- questions display -->
             <h2 id="question"></h2>
             <ul class="answer-choices">
                 <li class="choice"></li>
@@ -38,13 +38,22 @@
             </h3>
 
             <!-- high score entry -->
+            <div class="form">
+                <h2 id="form-title">Save Your Score</h2>
+                <form class="high-score-entry">
+                    <input type="text" id="name" name="name" placeholder="Enter Initials"></br>
+                    <input type="submit" id="submit" value="Submit">
+                </form>
+            </div>
 
             <!-- high scores -->
-
+            <div class="highscores">
+                <h2 id="high-score-title">High Scores</h2>
+                <ul class="scores-list">
+                    <!-- populate scores here -->
+                </ul>
+            </div>
         </div>
-
-
-
     </main>
     <script src="assets/scripts/script.js"></script>
 </body>
