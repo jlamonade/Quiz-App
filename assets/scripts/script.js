@@ -108,11 +108,11 @@ function hideStartDiv () {
 // functions to show elements
 
 function showQuestion () {
-    question.style = "display: inherit;"
+    question.style = "display: block;"
 }
 
 function showAnswers () {
-    answerOl.style = "display: inherit;"
+    answerOl.style = "display: block;"
 }
 
 function showCorrectAnswer () {
@@ -159,6 +159,7 @@ function startTimer() {
         // start button disappears
         // game will start
 hideAllQuestionElements();
+showAllQuestionElements();
             // timer starts
             // questions appear
             // answers appear
