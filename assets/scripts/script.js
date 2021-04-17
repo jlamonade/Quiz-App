@@ -214,6 +214,7 @@ function startTimer() {
             timer.textContent = "Time: 0";
             timeLeft = 100;
             hideAllQuestionElements();
+            showFormDiv();
         }
     }, 1000)
 }
