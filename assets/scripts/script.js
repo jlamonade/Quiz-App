@@ -1,6 +1,7 @@
 // Dependencies (HTML Elements, Libraries, etc.) =====================
 // Starting Data
-var startBtn = document.querySelector(".start-btn");
+var startButton = document.querySelector("#start");
+var startDiv = document.querySelector(".start-btn");
 var question = document.querySelector("#question");
 var answerList = document.querySelector(".answer-choices");
 var answerChoices = document.querySelectorAll(".choice");
@@ -35,21 +36,18 @@ addQuestionToList("Where?", ["0", "1", "3", "4"], 2);
 addQuestionToList("Why?", ["0", "1", "3", "4"], 2);
 
 function populateQuestionElements () {
-    chosenQuestion = questionList[generateRandomQuestionIndex()];
+    var chosenQuestion = questionList[generateRandomQuestionIndex()];
     question.textContent = chosenQuestion.question;
-    answerChoices[0].textContent = chosenQuestion.answers[0];
-    answerChoices[1].textContent = chosenQuestion.answers[1];
-    answerChoices[2].textContent = chosenQuestion.answers[2];
-    answerChoices[3].textContent = chosenQuestion.answers[3];
-    console.log()
+    for (var i = 0; i < answerChoices.length; i++) {
+        answerChoices[i].textContent = chosenQuestion.answers[i];
+    }
+    console.log(chosenQuestion.correctAnswer);
 }
 
 function generateRandomQuestionIndex () {
     var randomIndex = Math.floor(Math.random() * questionList.length);
     return randomIndex;
 }
-
-
 
 // Starting Data =====================================================
     // high scores are read from external data
@@ -83,8 +81,8 @@ function hideIncorrectAnswer () {
     incorrectAnswer.style = "display: none;"
 }
 
-function hideStartBtn () {
-    startBtn.style = "display: none;"
+function hideStartDiv () {
+    startDiv.style = "display: none;"
 }
 
 // functions to show elements
@@ -105,10 +103,14 @@ function showIncorrectAnswer () {
     incorrectAnswer.style = "display: inherit;"
 }
 
-function showStartButton () {
-    startBtn.style = "display: inherit;"
+function showStartDiv () {
+    startDiv.style = "display: revert;"
 }
 
+
+// function testing area
+showIncorrectAnswer();
+showCorrectAnswer();
 hideAllQuestionElements();
 // showAllQuestionElements();
 populateQuestionElements();
@@ -125,15 +127,11 @@ function startTimer() {
         if (timeLeft === 0) {
             clearInterval(timeInterval);
             hideAllQuestionElements();
+            showStartDiv();
         }
     }, 1000)
 }
 
-// event listeners
-
-startBtn.addEventListener("click", startTimer);
-startBtn.addEventListener("click", showAllQuestionElements);
-startBtn.addEventListener("click", hideStartBtn);
 
 // User Interactions =================================================
     // start button is clicked
@@ -142,6 +140,10 @@ startBtn.addEventListener("click", hideStartBtn);
             // timer starts
             // questions appear
             // answers appear
+startButton.addEventListener("click", startTimer);
+startButton.addEventListener("click", showAllQuestionElements);
+startButton.addEventListener("click", hideStartDiv);
+            
             // user clicks on an answer
             // record outcome/decrement time
             // show next question
