@@ -250,6 +250,8 @@ startButton.addEventListener("click", startTimer);
 startButton.addEventListener("click", populateQuestionElements);
 startButton.addEventListener("click", showAllQuestionElements);
 startButton.addEventListener("click", hideStartDiv);
+startButton.addEventListener("click", showScoreDiv);
+startButton.addEventListener("click", showTimer);
 
             // when user clicks on show high-scores
                 // high scores is displayed
