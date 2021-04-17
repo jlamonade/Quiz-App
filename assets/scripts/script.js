@@ -28,17 +28,26 @@ function addQuestionToList (question, answers, correctAnswer) {
 }
 
 addQuestionToList("How?", ["0", "1", "3", "4"], 2);
-addQuestionToList("How?", ["0", "1", "3", "4"], 2);
-addQuestionToList("How?", ["0", "1", "3", "4"], 2);
+addQuestionToList("Who?", ["0", "1", "3", "4"], 2);
+addQuestionToList("What?", ["0", "1", "3", "4"], 2);
+addQuestionToList("When?", ["0", "1", "3", "4"], 2);
+addQuestionToList("Where?", ["0", "1", "3", "4"], 2);
+addQuestionToList("Why?", ["0", "1", "3", "4"], 2);
 
 function populateQuestionElements () {
-    question.textContent = questionList[0].question;
-    answerChoices[0].textContent = questionList[0].answers[0];
-    answerChoices[1].textContent = questionList[0].answers[1];
-    answerChoices[2].textContent = questionList[0].answers[2];
-    answerChoices[3].textContent = questionList[0].answers[3];
+    chosenQuestion = questionList[generateRandomQuestionIndex()];
+    question.textContent = chosenQuestion.question;
+    answerChoices[0].textContent = chosenQuestion.answers[0];
+    answerChoices[1].textContent = chosenQuestion.answers[1];
+    answerChoices[2].textContent = chosenQuestion.answers[2];
+    answerChoices[3].textContent = chosenQuestion.answers[3];
+    console.log()
 }
 
+function generateRandomQuestionIndex () {
+    var randomIndex = Math.floor(Math.random() * questionList.length);
+    return randomIndex;
+}
 
 
 
@@ -101,7 +110,7 @@ function showStartButton () {
 }
 
 hideAllQuestionElements();
-showAllQuestionElements();
+// showAllQuestionElements();
 populateQuestionElements();
 
 // timer functions
@@ -124,6 +133,7 @@ function startTimer() {
 
 startBtn.addEventListener("click", startTimer);
 startBtn.addEventListener("click", showAllQuestionElements);
+startBtn.addEventListener("click", hideStartBtn);
 
 // User Interactions =================================================
     // start button is clicked
