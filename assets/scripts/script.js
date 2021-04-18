@@ -215,6 +215,7 @@ function startTimer() {
             timeLeft = 100;
             hideAllQuestionElements();
             showFormDiv();
+            showPlayButtonDiv();
         }
     }, 1000)
 }
@@ -240,6 +241,9 @@ function startButtonActions () {
 }
 
 function playButtonActions() {
+    hideFormDiv();
+    hideScoreDiv();
+    hideTimer();
     showHighScoresButtonsDiv();
     hidePlayButtonDiv();
     hideHighScoresDiv();
@@ -269,11 +273,12 @@ playButtonDiv.addEventListener("click", playButtonActions);
             
             // user clicks on an answer
             // record outcome/decrement time
-answerChoices[0].addEventListener("click", function() {validateUserChoice(this.dataset.correct)});
-answerChoices[1].addEventListener("click", function() {validateUserChoice(this.dataset.correct)});
-answerChoices[2].addEventListener("click", function() {validateUserChoice(this.dataset.correct)});
-answerChoices[3].addEventListener("click", function() {validateUserChoice(this.dataset.correct)});
-            
+
+for (var i = 0; i < answerChoices.length; i++) {
+    answerChoices[i].addEventListener("click", function() {validateUserChoice(this.dataset.correct)});
+    answerChoices[i].addEventListener("click", populateQuestionElements);
+}
+
             // show next question
         // when timer runs out
             // display user score
