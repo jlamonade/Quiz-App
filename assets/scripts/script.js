@@ -1,5 +1,5 @@
 // Dependencies (HTML Elements, Libraries, etc.) =====================
-// Starting Data
+
 var startButton = document.querySelector("#start");
 var highScoresButtonDiv = document.querySelector(".button");
 var playButtonDiv = document.querySelector(".play");
@@ -16,20 +16,18 @@ var timer = document.querySelector(".timer");
 var highScoresDiv = document.querySelector(".highscores");
 var formDiv = document.querySelector(".form");
 
-// Build
+// Build =============================================================
 
 // Starting Data =====================================================
-// high scores are read from external data
-// questions/answers
 
 var timeLeft = 100;
 var questionIndexCounter = 0;
 var currentScore = 0;
 var questionList = [];
 
-// Functions =========================================================
+// FUNCTIONS =========================================================
 
-// functions to hide elements used to create different page views
+// FUNCTIONS TO HIDE ELEMENTS
 
 function hideCorrectAnswer() {
   correctAnswer.style = "display: none;";
@@ -71,7 +69,7 @@ function hidePlayButtonDiv() {
   playButtonDiv.style = "display: none;";
 }
 
-// functions to show elements
+// FUNCTIONS TO SHOW ELEMENTS
 
 function showCorrectAnswer() {
   correctAnswer.style = "display: block;";
@@ -113,27 +111,7 @@ function showPlayButtonDiv() {
   playButtonDiv.style = "display: block;";
 }
 
-// show/hide testing area
-
-// hideHighScoresButtonsDiv();
-// hideScoreDiv();
-// hideTimer();
-// showHighScoresButtonsDiv();
-// showScoreDiv();
-// showTimer();
-
-// hideHighScoresDiv();
-// hideFormDiv();
-// showHighScoresDiv();
-// showFormDiv();
-
-// showIncorrectAnswer();
-// showCorrectAnswer();
-// hideAllQuestionElements();
-// showAllQuestionElements();
-// populateQuestionElements();
-
-// page view functions
+// PAGE VIEW FUNCTIONS
 
 function showHighScoresButtonActions() {
   hideStartDiv();
@@ -165,7 +143,7 @@ function playButtonActions() {
   showStartDiv();
 }
 
-// timer function
+// TIMER FUNCTION
 
 function startTimer() {
   /* 
@@ -189,7 +167,7 @@ function startTimer() {
   }, 1000);
 }
 
-// Question constructor
+// QUESTION CONSTRUCTOR
 
 function Question(question, answers, correctAnswer) {
   /* 
@@ -209,7 +187,7 @@ function addQuestionToList(question, answers, correctAnswer) {
   questionList.push(question);
 }
 
-// quiz functions
+// QUIZ FUNCTIONS
 
 function resetScore() {
   currentScore = 0;
@@ -283,7 +261,7 @@ function getNextQuestion() {
   }
 }
 
-// high score functions
+// HIGH SCORE FUNCTIONS
 
 function Highscore(name, score) {
   this.name = name;
@@ -298,29 +276,11 @@ function showHighScores() {
   // adds high score li element to .scores-list
 }
 
-// User Interactions =================================================
-// start button is clicked
-// start button disappears
-// game will start
-// hideAllQuestionElements();
-// showAllQuestionElements();
-// hideStartDiv();
+// INITIALIZATION ====================================================
 
-// timer starts
-// questions appear
-// answers appear
 startButton.addEventListener("click", startButtonActions);
-
-// when user clicks on show high-scores
-// high scores is displayed
 highScoresButtonDiv.addEventListener("click", showHighScoresButtonActions);
-
-// when user clicks on play button high scores view
-// start button appears and button for high scores appears
 playButtonDiv.addEventListener("click", playButtonActions);
-
-// user clicks on an answer
-// record outcome/decrement time
 
 for (var i = 0; i < answerChoices.length; i++) {
   answerChoices[i].addEventListener("click", function () {
@@ -330,14 +290,6 @@ for (var i = 0; i < answerChoices.length; i++) {
   answerChoices[i].addEventListener("click", populateQuestionElements);
 }
 
-// show next question
-// when timer runs out
-// display user score
-// record user score to high scores
-// display high scores
-// go back to start button
-
-// Initialization ====================================================
 addQuestionToList(
   "What is the syntax to declare a function?",
   [
@@ -389,23 +341,3 @@ addQuestionToList(
   ],
   3
 );
-
-// show view highscores button
-// when view highscores is pressed
-// display high scores
-// show start button
-// when start button is clicked
-// timer starts
-// questions and answers appear
-// user chooses answer
-// if correct answer is chosen
-// alert user that they were correct
-// record correct answer
-// else if incorrect answer is chosen
-// alert user that they were incorrect
-// record incorrect answer
-// take time away from timer
-// if timer runs out
-// display user score
-// ask for their initials to record high scores
-// go back to start button
