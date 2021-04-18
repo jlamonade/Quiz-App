@@ -301,7 +301,7 @@ addQuestionToList(
   0
 );
 addQuestionToList(
-  "How do get the value of a property of an object within itself?",
+  "How do we get the value of a property of an object within itself?",
   ["git[property]", "objectName[property]", "this.property", "git.property"],
   2
 );
