@@ -285,6 +285,13 @@ function getNextQuestion() {
 
 // high score functions
 
+function Highscore(name, score) {
+  this.name = name;
+  this.score = score;
+}
+
+console.log(new Highscore('Jason', 12));
+
 function saveHighScore() {
   // write high score to external file
 }
