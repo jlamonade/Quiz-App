@@ -28,6 +28,28 @@ var currentScore = 0;
 var questionList = [];
 
 // Functions =========================================================
+
+// timer function
+
+function startTimer() {
+  function stopTimer(clearThisTimer) {
+    clearInterval(clearThisTimer);
+  }
+  timer.textContent = "Time: " + timeLeft;
+  var timeInterval = setInterval(function () {
+    timeLeft--;
+    if (timeLeft > 0) {
+      timer.textContent = "Time: " + timeLeft;
+    } else {
+      stopTimer(timeInterval);
+      timer.textContent = "Time: 0";
+      timeLeft = 100;
+      hideQuestion();
+      showFormDiv();
+      showPlayButtonDiv();
+    }
+  }, 1000);
+}
 // Question constructor
 
 function Question(question, answers, correctAnswer) {
@@ -41,13 +63,7 @@ function addQuestionToList(question, answers, correctAnswer) {
   questionList.push(question);
 }
 
-function saveHighScore() {
-  // write high score to external file
-}
-
-function showHighScores() {
-  // adds high score li element to .scores-list
-}
+// quiz functions
 
 function validateUserChoice(isAnswer) {
   if (isAnswer == "true") {
@@ -85,14 +101,24 @@ function shuffleQuestionList() {
 }
 
 function getNextQuestion() {
-    if (questionIndexCounter < questionList.length) {
-      return questionList[questionIndexCounter++];
-    } else {
-      console.log(questionList);
-      questionIndexCounter = 0;
-      return questionList[questionIndexCounter++];
-    }
+  if (questionIndexCounter < questionList.length) {
+    return questionList[questionIndexCounter++];
+  } else {
+    console.log(questionList);
+    questionIndexCounter = 0;
+    return questionList[questionIndexCounter++];
   }
+}
+
+// high score functions
+
+function saveHighScore() {
+  // write high score to external file
+}
+
+function showHighScores() {
+  // adds high score li element to .scores-list
+}
 
 // functions to hide elements
 
@@ -151,7 +177,7 @@ function showStartDiv() {
 }
 
 function showQuestion() {
-    questionDiv.style = "display: block;"
+  questionDiv.style = "display: block;";
 }
 
 function showHighScoresDiv() {
@@ -197,28 +223,6 @@ function showPlayButtonDiv() {
 // hideAllQuestionElements();
 // showAllQuestionElements();
 // populateQuestionElements();
-
-// timer function
-
-function startTimer() {
-  function stopTimer(clearThisTimer) {
-    clearInterval(clearThisTimer);
-  }
-  timer.textContent = "Time: " + timeLeft;
-  var timeInterval = setInterval(function () {
-    timeLeft--;
-    if (timeLeft > 0) {
-      timer.textContent = "Time: " + timeLeft;
-    } else {
-      stopTimer(timeInterval);
-      timer.textContent = "Time: 0";
-      timeLeft = 100;
-      hideQuestion();
-      showFormDiv();
-      showPlayButtonDiv();
-    }
-  }, 1000);
-}
 
 // page view functions
 
