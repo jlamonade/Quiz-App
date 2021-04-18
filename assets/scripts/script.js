@@ -144,6 +144,7 @@ function showHighScoresButtonActions() {
 }
 
 function startButtonActions() {
+  resetScore();
   hideStartDiv();
   startTimer();
   shuffleQuestionList();
@@ -209,6 +210,11 @@ function addQuestionToList(question, answers, correctAnswer) {
 }
 
 // quiz functions
+
+function resetScore() {
+  currentScore = 0;
+  currentScoreSpan.textContent = "0";
+}
 
 function populateQuestionElements() {
   /* 
