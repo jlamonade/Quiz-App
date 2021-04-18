@@ -290,8 +290,6 @@ function Highscore(name, score) {
   this.score = score;
 }
 
-console.log(new Highscore('Jason', 12));
-
 function saveHighScore() {
   // write high score to external file
 }
@@ -340,14 +338,57 @@ for (var i = 0; i < answerChoices.length; i++) {
 // go back to start button
 
 // Initialization ====================================================
-
-// page loads
-addQuestionToList("How?", ["0", "1", "3", "4"], 0);
-addQuestionToList("Who?", ["0", "1", "3", "4"], 0);
-addQuestionToList("What?", ["0", "1", "3", "4"], 0);
-addQuestionToList("When?", ["0", "1", "3", "4"], 0);
-addQuestionToList("Where?", ["0", "1", "3", "4"], 0);
-addQuestionToList("Why?", ["0", "1", "3", "4"], 0);
+addQuestionToList(
+  "What is the syntax to declare a function?",
+  [
+    "function functionName() {}",
+    "doThis() {}",
+    "var function() {}",
+    "var name = {}",
+  ],
+  0
+);
+addQuestionToList(
+  "How do get the value of a property of an object within itself?",
+  ["git[property]", "objectName[property]", "this.property", "git.property"],
+  2
+);
+addQuestionToList(
+  "Inside which HTML element do we put the JavaScript??",
+  ["<javascript>", "<script>", "<js>", "<scripting>"],
+  1
+);
+addQuestionToList(
+  `What is the correct JavaScript syntax to change the content of the HTML element below?
+  <p id='demo'>This is a demonstration.</p>`,
+  [
+    "#demo.innerHTML = 'Hello World!'",
+    "document.getElementsById('demo').innerHTML = 'Hello World!'",
+    "document.getElement('p').innerHTML = 'Hello World!'';",
+    "document.getElementByName('p').innerHTML = 'Hello World!'';",
+  ],
+  1
+);
+addQuestionToList(
+  "Where is the correct place to insert JavaScript?",
+  [
+    "The <body> section",
+    "Both the <head> section and the <body> section are correct",
+    "The <head> section",
+    "The <footer> section",
+  ],
+  1
+);
+addQuestionToList(
+  "What is the correct syntax for referring to an external script called 'xyz.js'?",
+  [
+    "<script name='xyz.js'>",
+    "<script href='xyz.js'>",
+    "<script rel='xyz.js'>",
+    "<script src='xyz.js'>",
+  ],
+  3
+);
 
 // show view highscores button
 // when view highscores is pressed
