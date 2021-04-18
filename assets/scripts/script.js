@@ -61,6 +61,17 @@ function populateQuestionElements () {
     answerChoices[correctIndex].setAttribute("data-correct", "true");
 }
 
+function shuffleQuestionList () {
+    for (var i = questionList.length - 1; i > 0; i--) {
+        var randomIndex = Math.floor(Math.random() * (i + 1));
+        [questionList[i], questionList[randomIndex]] = [questionList[randomIndex], questionList[i]];
+    }
+}
+
+// console.dir(questionList);
+// shuffleQuestionList();
+// console.dir(questionList);
+
 function getRandomQuestion () {
     var randomQuestion = questionList[generateRandomQuestionIndex()];
     return randomQuestion;
