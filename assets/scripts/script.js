@@ -29,126 +29,6 @@ var questionList = [];
 
 // Functions =========================================================
 
-// timer function
-
-function startTimer() {
-  /* 
-  timer starts with 100 seconds and when timeLeft is 0 or less
-  question elements are hidden and score submission view
-  is shown
-   */
-  timer.textContent = "Time: " + timeLeft;
-  var timeInterval = setInterval(function () {
-    timeLeft--;
-    if (timeLeft > 0) {
-      timer.textContent = "Time: " + timeLeft;
-    } else {
-      stopTimer(timeInterval);
-      timer.textContent = "Time: 0";
-      timeLeft = 100;
-      hideQuestion();
-      showFormDiv();
-      showPlayButtonDiv();
-    }
-  }, 1000);
-}
-// Question constructor
-
-function Question(question, answers, correctAnswer) {
-  /* 
-  creates a question object with question, answers taken in array form,
-  and an index for the correct answer
-  */
-  this.question = question;
-  this.answers = answers;
-  this.correctAnswer = correctAnswer;
-}
-
-function addQuestionToList(question, answers, correctAnswer) {
-  /* 
-  creates a new question object and pushes it into a questionList array
-  */
-  var question = new Question(question, answers, correctAnswer);
-  questionList.push(question);
-}
-
-// quiz functions
-
-function populateQuestionElements() {
-  /* 
-  populates the question elements with the question and answers
-  as well as adds a data-correct attribute to answer elements
-  signifying whether they are true, correct answer; or false,
-  incorrect answer.
-  */
-  var chosenQuestion = getNextQuestion();
-  var correctIndex = chosenQuestion.correctAnswer;
-  questionText.textContent = chosenQuestion.question;
-  for (var i = 0; i < answerChoices.length; i++) {
-    answerChoices[i].textContent = chosenQuestion.answers[i];
-    answerChoices[i].setAttribute("data-correct", "false");
-  }
-  answerChoices[correctIndex].setAttribute("data-correct", "true");
-}
-
-function shuffleQuestionList() {
-  /* 
-  shuffles the question list so that each new iteration of the list
-  is in a new order
-  */
-  for (var i = questionList.length - 1; i > 0; i--) {
-    var randomIndex = Math.floor(Math.random() * (i + 1));
-    [questionList[i], questionList[randomIndex]] = [
-      questionList[randomIndex],
-      questionList[i],
-    ];
-  }
-}
-
-function validateUserChoice(isAnswer) {
-  /* 
-  checks whether the element's data-correct attribute contains true
-  or false, if true increment score, if false decrement time
-  */
-  if (isAnswer == "true") {
-    currentScore++;
-    currentScoreSpan.textContent = currentScore;
-  } else {
-    timeLeft -= 10;
-    if (timeLeft > 0) { // to make sure time doesn't display a negative value
-      timer.textContent = "Time: " + timeLeft;
-    } else {
-      timer.textContent = "Time: 0";
-    }
-  }
-}
-
-function getNextQuestion() {
-  /* 
-  used together with questionIndexCounter, to get questions
-  from the list in order
-  */
-  if (questionIndexCounter < questionList.length) { 
-    // if there are questions that haven't been used in this iteration
-    return questionList[questionIndexCounter++];
-  } else { // if out of questions
-    shuffleQuestionList(); 
-    questionIndexCounter = 0; 
-    return questionList[questionIndexCounter++]; 
-    // returns the first question in newly shuffled question array
-  }
-}
-
-// high score functions
-
-function saveHighScore() {
-  // write high score to external file
-}
-
-function showHighScores() {
-  // adds high score li element to .scores-list
-}
-
 // functions to hide elements used to create different page views
 
 function hideCorrectAnswer() {
@@ -284,6 +164,129 @@ function playButtonActions() {
   showStartDiv();
 }
 
+// timer function
+
+function startTimer() {
+  /* 
+  timer starts with 100 seconds and when timeLeft is 0 or less
+  question elements are hidden and score submission view
+  is shown
+  */
+  timer.textContent = "Time: " + timeLeft;
+  var timeInterval = setInterval(function () {
+    timeLeft--;
+    if (timeLeft > 0) {
+      timer.textContent = "Time: " + timeLeft;
+    } else {
+      clearInterval(timeInterval);
+      timer.textContent = "Time: 0";
+      timeLeft = 100;
+      hideQuestion();
+      showFormDiv();
+      showPlayButtonDiv();
+    }
+  }, 1000);
+}
+
+// Question constructor
+
+function Question(question, answers, correctAnswer) {
+  /* 
+  creates a question object with question, answers taken in array form,
+  and an index for the correct answer
+  */
+  this.question = question;
+  this.answers = answers;
+  this.correctAnswer = correctAnswer;
+}
+
+function addQuestionToList(question, answers, correctAnswer) {
+  /* 
+  creates a new question object and pushes it into a questionList array
+  */
+  var question = new Question(question, answers, correctAnswer);
+  questionList.push(question);
+}
+
+// quiz functions
+
+function populateQuestionElements() {
+  /* 
+  populates the question elements with the question and answers
+  as well as adds a data-correct attribute to answer elements
+  signifying whether they are true, correct answer; or false,
+  incorrect answer.
+  */
+  var chosenQuestion = getNextQuestion();
+  var correctIndex = chosenQuestion.correctAnswer;
+  questionText.textContent = chosenQuestion.question;
+  for (var i = 0; i < answerChoices.length; i++) {
+    answerChoices[i].textContent = chosenQuestion.answers[i];
+    answerChoices[i].setAttribute("data-correct", "false");
+  }
+  answerChoices[correctIndex].setAttribute("data-correct", "true");
+}
+
+function shuffleQuestionList() {
+  /* 
+  shuffles the question list so that each new iteration of the list
+  is in a new order
+  */
+  for (var i = questionList.length - 1; i > 0; i--) {
+    var randomIndex = Math.floor(Math.random() * (i + 1));
+    [questionList[i], questionList[randomIndex]] = [
+      questionList[randomIndex],
+      questionList[i],
+    ];
+  }
+}
+
+function validateUserChoice(isAnswer) {
+  /* 
+  checks whether the element's data-correct attribute contains true
+  or false, if true increment score, if false decrement time
+  */
+  if (isAnswer == "true") {
+    currentScore++;
+    currentScoreSpan.textContent = currentScore;
+  } else {
+    timeLeft -= 10;
+    if (timeLeft > 0) {
+      // to make sure time doesn't display a negative value
+      timer.textContent = "Time: " + timeLeft;
+    } else {
+      timer.textContent = "Time: 0";
+    }
+  }
+}
+
+function getNextQuestion() {
+  /* 
+  used together with questionIndexCounter, to get questions
+  from the list in order
+  */
+  if (questionIndexCounter < questionList.length) {
+    // if there are questions that haven't been used in this iteration
+    return questionList[questionIndexCounter++];
+  } else {
+    // if out of questions
+    shuffleQuestionList();
+    questionIndexCounter = 0;
+    return questionList[questionIndexCounter++];
+    // returns the first question in newly shuffled question array
+  }
+}
+
+// high score functions
+
+function saveHighScore() {
+  // write high score to external file
+}
+
+function showHighScores() {
+  // adds high score li element to .scores-list
+}
+
 // User Interactions =================================================
 // start button is clicked
 // start button disappears
@@ -310,7 +313,7 @@ playButtonDiv.addEventListener("click", playButtonActions);
 
 for (var i = 0; i < answerChoices.length; i++) {
   answerChoices[i].addEventListener("click", function () {
-    validateUserChoice(this.dataset.correct); 
+    validateUserChoice(this.dataset.correct);
     // this passes the value of data-correct into validateUserChoice()
   });
   answerChoices[i].addEventListener("click", populateQuestionElements);
