@@ -5,7 +5,7 @@ var highScoresButtonDiv = document.querySelector(".button");
 var playButtonDiv = document.querySelector(".play");
 var startDiv = document.querySelector(".start-btn");
 var questionDiv = document.querySelector(".question");
-var question = document.querySelector("#question-title");
+var questionText = document.querySelector("#question-title");
 var answerOl = document.querySelector(".answer-choices");
 var answerChoices = document.querySelectorAll(".choice");
 var correctAnswer = document.querySelector("#correct");
@@ -16,21 +16,19 @@ var timer = document.querySelector(".timer");
 var highScoresDiv = document.querySelector(".highscores");
 var formDiv = document.querySelector(".form");
 
-var questionList = [];
-var questionIndexCounter = 0;
-var currentScore = 0;
-
 // Build
 
+// Starting Data =====================================================
+// high scores are read from external data
+// questions/answers
+
+var timeLeft = 100;
+var questionIndexCounter = 0;
+var currentScore = 0;
+var questionList = [];
+
+// Functions =========================================================
 // Question constructor
-
-function saveHighScore() {
-  // write high score to external file
-}
-
-function showHighScores() {
-  // adds high score li element to .scores-list
-}
 
 function Question(question, answers, correctAnswer) {
   this.question = question;
@@ -43,64 +41,14 @@ function addQuestionToList(question, answers, correctAnswer) {
   questionList.push(question);
 }
 
-addQuestionToList("How?", ["0", "1", "3", "4"], 2);
-addQuestionToList("Who?", ["0", "1", "3", "4"], 2);
-addQuestionToList("What?", ["0", "1", "3", "4"], 2);
-addQuestionToList("When?", ["0", "1", "3", "4"], 2);
-addQuestionToList("Where?", ["0", "1", "3", "4"], 2);
-addQuestionToList("Why?", ["0", "1", "3", "4"], 2);
-
-function populateQuestionElements() {
-  var chosenQuestion = getNextQuestion();
-  var correctIndex = chosenQuestion.correctAnswer;
-  question.textContent = chosenQuestion.question;
-  for (var i = 0; i < answerChoices.length; i++) {
-    answerChoices[i].textContent = chosenQuestion.answers[i];
-    answerChoices[i].setAttribute("data-correct", "false");
-  }
-  answerChoices[correctIndex].setAttribute("data-correct", "true");
+function saveHighScore() {
+  // write high score to external file
 }
 
-function getNextQuestion() {
-  if (questionIndexCounter < questionList.length) {
-    return questionList[questionIndexCounter++];
-  } else {
-      shuffleQuestionList();
-      questionIndexCounter = 0;
-      return questionList[questionIndexCounter++];
-  }
+function showHighScores() {
+  // adds high score li element to .scores-list
 }
 
-function shuffleQuestionList() {
-  for (var i = questionList.length - 1; i > 0; i--) {
-    var randomIndex = Math.floor(Math.random() * (i + 1));
-    [questionList[i], questionList[randomIndex]] = [
-      questionList[randomIndex],
-      questionList[i],
-    ];
-  }
-}
-
-// console.dir(questionList);
-// shuffleQuestionList();
-// console.dir(questionList);
-
-// function getRandomQuestion () {
-//     var randomQuestion = questionList[generateRandomQuestionIndex()];
-//     return randomQuestion;
-// }
-
-// function generateRandomQuestionIndex () {
-//     var randomIndex = Math.floor(Math.random() * questionList.length);
-//     return randomIndex;
-// }
-
-// Starting Data =====================================================
-// high scores are read from external data
-// questions/answers
-var timeLeft = 100;
-
-// Functions =========================================================
 function validateUserChoice(isAnswer) {
   if (isAnswer == "true") {
     currentScore++;
@@ -115,13 +63,36 @@ function validateUserChoice(isAnswer) {
   }
 }
 
-function hideAllQuestionElements() {
-  questionDiv.style = "display: none;";
+function populateQuestionElements() {
+  var chosenQuestion = getNextQuestion();
+  var correctIndex = chosenQuestion.correctAnswer;
+  questionText.textContent = chosenQuestion.question;
+  for (var i = 0; i < answerChoices.length; i++) {
+    answerChoices[i].textContent = chosenQuestion.answers[i];
+    answerChoices[i].setAttribute("data-correct", "false");
+  }
+  answerChoices[correctIndex].setAttribute("data-correct", "true");
 }
 
-function showAllQuestionElements() {
-  questionDiv.style = "display: block;";
+function shuffleQuestionList() {
+  for (var i = questionList.length - 1; i > 0; i--) {
+    var randomIndex = Math.floor(Math.random() * (i + 1));
+    [questionList[i], questionList[randomIndex]] = [
+      questionList[randomIndex],
+      questionList[i],
+    ];
+  }
 }
+
+function getNextQuestion() {
+    if (questionIndexCounter < questionList.length) {
+      return questionList[questionIndexCounter++];
+    } else {
+      console.log(questionList);
+      questionIndexCounter = 0;
+      return questionList[questionIndexCounter++];
+    }
+  }
 
 // functions to hide elements
 
@@ -138,7 +109,7 @@ function hideStartDiv() {
 }
 
 function hideQuestion() {
-  question.style = "display: none;";
+  questionDiv.style = "display: none;";
 }
 
 function hideHighScoresDiv() {
@@ -177,6 +148,10 @@ function showIncorrectAnswer() {
 
 function showStartDiv() {
   startDiv.style = "display: block;";
+}
+
+function showQuestion() {
+    questionDiv.style = "display: block;"
 }
 
 function showHighScoresDiv() {
@@ -223,7 +198,7 @@ function showPlayButtonDiv() {
 // showAllQuestionElements();
 // populateQuestionElements();
 
-// timer functions
+// timer function
 
 function startTimer() {
   function stopTimer(clearThisTimer) {
@@ -238,7 +213,7 @@ function startTimer() {
       stopTimer(timeInterval);
       timer.textContent = "Time: 0";
       timeLeft = 100;
-      hideAllQuestionElements();
+      hideQuestion();
       showFormDiv();
       showPlayButtonDiv();
     }
@@ -258,11 +233,12 @@ function showHighScoresButtonActions() {
 function startButtonActions() {
   hideStartDiv();
   startTimer();
+  shuffleQuestionList();
   populateQuestionElements();
   showScoreDiv();
   showTimer();
   hideHighScoresButtonsDiv();
-  showAllQuestionElements();
+  showQuestion();
 }
 
 function playButtonActions() {
@@ -316,6 +292,12 @@ for (var i = 0; i < answerChoices.length; i++) {
 // Initialization ====================================================
 
 // page loads
+addQuestionToList("How?", ["0", "1", "3", "4"], 0);
+addQuestionToList("Who?", ["0", "1", "3", "4"], 0);
+addQuestionToList("What?", ["0", "1", "3", "4"], 0);
+addQuestionToList("When?", ["0", "1", "3", "4"], 0);
+addQuestionToList("Where?", ["0", "1", "3", "4"], 0);
+addQuestionToList("Why?", ["0", "1", "3", "4"], 0);
 
 // show view highscores button
 // when view highscores is pressed
