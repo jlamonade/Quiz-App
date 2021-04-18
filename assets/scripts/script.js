@@ -32,9 +32,6 @@ var questionList = [];
 // timer function
 
 function startTimer() {
-  function stopTimer(clearThisTimer) {
-    clearInterval(clearThisTimer);
-  }
   timer.textContent = "Time: " + timeLeft;
   var timeInterval = setInterval(function () {
     timeLeft--;
@@ -65,20 +62,6 @@ function addQuestionToList(question, answers, correctAnswer) {
 
 // quiz functions
 
-function validateUserChoice(isAnswer) {
-  if (isAnswer == "true") {
-    currentScore++;
-    currentScoreSpan.textContent = currentScore;
-  } else {
-    timeLeft -= 10;
-    if (timeLeft > 0) {
-      timer.textContent = "Time: " + timeLeft;
-    } else {
-      timer.textContent = "Time: 0";
-    }
-  }
-}
-
 function populateQuestionElements() {
   var chosenQuestion = getNextQuestion();
   var correctIndex = chosenQuestion.correctAnswer;
@@ -97,6 +80,20 @@ function shuffleQuestionList() {
       questionList[randomIndex],
       questionList[i],
     ];
+  }
+}
+
+function validateUserChoice(isAnswer) {
+  if (isAnswer == "true") {
+    currentScore++;
+    currentScoreSpan.textContent = currentScore;
+  } else {
+    timeLeft -= 10;
+    if (timeLeft > 0) {
+      timer.textContent = "Time: " + timeLeft;
+    } else {
+      timer.textContent = "Time: 0";
+    }
   }
 }
 
