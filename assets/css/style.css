@@ -97,11 +97,11 @@ main {
     background: #E89394;
 }
 
-ul {
+.question ul {
     list-style-type: none;
 }
 
-li {
+.question li {
     margin: 15px 0;
     font-size: 2rem;
     padding: 10px;
@@ -111,7 +111,7 @@ li {
     text-align: center;
 }
 
-li:hover {
+.question li:hover {
     box-shadow: 1px 1px 10px grey;
 }
 
@@ -135,6 +135,20 @@ h3 {
 
 .highscores {
     display: none;
+}
+
+.highscores ul {
+    list-style-type: none;
+}
+
+.highscores ul li {
+    margin: 15px 0;
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 5px;
+    background: #D0DEE5;
+    cursor: pointer;
+    text-align: center;
 }
 
 #high-score-title {

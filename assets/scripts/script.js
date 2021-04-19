@@ -16,6 +16,8 @@ var timer = document.querySelector(".timer");
 var highScoresDiv = document.querySelector(".highscores");
 var highscoresList = document.querySelector(".scores-list")
 var formDiv = document.querySelector(".form");
+var formInputValue = document.querySelector("#name").value;
+var submitButton = document.querySelector("#submit");
 
 // Build =============================================================
 
@@ -28,7 +30,8 @@ var timeLeft = 100;
 var questionIndexCounter = 0;
 var currentScore = 0;
 var questionList = [];
-var highScoresArray = (JSON.parse(localStorage.getItem("highscores"))) || [];
+var highScoresArray = (localStorage.getItem("highscores")) ? JSON.parse(localStorage.getItem("highscores")) : [];
+populateHighscores();
 
 // FUNCTIONS =========================================================
 
@@ -148,8 +151,20 @@ function playButtonActions() {
   showStartDiv();
 }
 
-function submitHighscoreOptions() {
-  return
+function submitButtonActions(event) {
+  event.preventDefault();
+  if (formInputValue) {
+    saveHighScoreToArray();
+    populateHighscores();
+    hideFormDiv();
+    showHighScoresButtonActions();
+  } else {
+    formInputValue = "ANO";
+    saveHighScoreToArray();
+    populateHighscores();
+    hideFormDiv();
+    showHighScoresButtonActions();
+  }
 }
 
 // TIMER FUNCTION
@@ -277,14 +292,16 @@ function Highscore(name, score) {
   this.score = score;
 }
 
-function saveHighScoreToArray(name) {
+function saveHighScoreToArray() {
+  var name = document.querySelector("#name").value;
   var highScoreObject = new Highscore(name, currentScore);
-  highScoreArray.push(highScoreObject);
+  highScoresArray.push(highScoreObject);
   sortHighscoreArray();
+  saveHighscoreToLocalStorage();
 }
 
 function sortHighscoreArray() {
-  highScoreArray.sort((object1, object2) => {
+  highScoresArray.sort((object1, object2) => {
     return object1.score > object2.score ? 1 : -1;
   });
 }
@@ -296,12 +313,9 @@ function saveHighscoreToLocalStorage() {
 function populateHighscores() {
   if (highScoresArray.length > 0) {
     for (var i = 0; i < highScoresArray.length; i++) {
-      var highScoreLi = document.createElement("li")
-      var username = document.createElement("span").textContent(highScoresArray[i].name).setAttribute("float: left;");
-      var score = document.createElement("span").textContent(highScoresArray[i].score).setAttribute("float: right;");
-      highScoreLi.append(username);
-      highScoreLi.append(score);
-      highScoresDiv.append(highScoreLi);
+      var highScoreLi = document.createElement("li");
+      highScoreLi.innerHTML = `${highScoresArray[i].name}: ${highScoresArray[i].score}`;
+      highscoresList.appendChild(highScoreLi);
     }
   }
 }
@@ -315,6 +329,9 @@ function showHighScores() {
 startButton.addEventListener("click", startButtonActions);
 highScoresButtonDiv.addEventListener("click", showHighScoresButtonActions);
 playButtonDiv.addEventListener("click", playButtonActions);
+submitButton.addEventListener("click", function(event) {
+  submitButtonActions(event);
+})
 
 for (var i = 0; i < answerChoices.length; i++) {
   answerChoices[i].addEventListener("click", function () {
