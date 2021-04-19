@@ -14,9 +14,13 @@ var scoreDiv = document.querySelector(".score");
 var currentScoreSpan = document.querySelector(".current-score");
 var timer = document.querySelector(".timer");
 var highScoresDiv = document.querySelector(".highscores");
+var highscoresList = document.querySelector(".scores-list")
 var formDiv = document.querySelector(".form");
 
 // Build =============================================================
+
+
+
 
 // Starting Data =====================================================
 
@@ -24,7 +28,7 @@ var timeLeft = 100;
 var questionIndexCounter = 0;
 var currentScore = 0;
 var questionList = [];
-var highScoresArray = [];
+var highScoresArray = (JSON.parse(localStorage.getItem("highscores"))) || [];
 
 // FUNCTIONS =========================================================
 
@@ -276,17 +280,34 @@ function Highscore(name, score) {
 function saveHighScoreToArray(name) {
   var highScoreObject = new Highscore(name, currentScore);
   highScoreArray.push(highScoreObject);
-  sortHighScoreArray();
+  sortHighscoreArray();
 }
 
-function sortHighScoreArray() {
+function sortHighscoreArray() {
   highScoreArray.sort((object1, object2) => {
     return object1.score > object2.score ? 1 : -1;
   });
 }
 
+function saveHighscoreToLocalStorage() {
+  localStorage.setItem("highscores", JSON.stringify(highScoresArray));
+}
+
+function populateHighscores() {
+  if (highScoresArray.length > 0) {
+    for (var i = 0; i < highScoresArray.length; i++) {
+      var highScoreLi = document.createElement("li")
+      var username = document.createElement("span").textContent(highScoresArray[i].name).setAttribute("float: left;");
+      var score = document.createElement("span").textContent(highScoresArray[i].score).setAttribute("float: right;");
+      highScoreLi.append(username);
+      highScoreLi.append(score);
+      highScoresDiv.append(highScoreLi);
+    }
+  }
+}
+
 function showHighScores() {
-  // adds high score li element to .scores-list
+  
 }
 
 // INITIALIZATION ====================================================
