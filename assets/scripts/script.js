@@ -218,9 +218,9 @@ function populateQuestionElements() {
   */
   var chosenQuestion = getNextQuestion();
   var correctIndex = chosenQuestion.correctAnswer;
-  questionText.textContent = chosenQuestion.question;
+  questionText.innerHTML = chosenQuestion.question;
   for (var i = 0; i < answerChoices.length; i++) {
-    answerChoices[i].innerHTML = chosenQuestion.answers[i];
+    answerChoices[i].textContent = chosenQuestion.answers[i];
     answerChoices[i].setAttribute("data-correct", "false");
   }
   answerChoices[correctIndex].setAttribute("data-correct", "true");
