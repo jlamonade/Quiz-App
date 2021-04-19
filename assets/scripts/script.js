@@ -220,7 +220,7 @@ function populateQuestionElements() {
   var correctIndex = chosenQuestion.correctAnswer;
   questionText.textContent = chosenQuestion.question;
   for (var i = 0; i < answerChoices.length; i++) {
-    answerChoices[i].textContent = chosenQuestion.answers[i];
+    answerChoices[i].innerHTML = chosenQuestion.answers[i];
     answerChoices[i].setAttribute("data-correct", "false");
   }
   answerChoices[correctIndex].setAttribute("data-correct", "true");
@@ -353,12 +353,13 @@ addQuestionToList(
   2
 );
 addQuestionToList(
-  "Inside which HTML element do we put the JavaScript??",
+  "Inside which HTML element do we put the JavaScript?",
   ["<javascript>", "<script>", "<js>", "<scripting>"],
   1
 );
 addQuestionToList(
   `What is the correct JavaScript syntax to change the content of the HTML element below?
+  <br/>
   <p id='demo'>This is a demonstration.</p>`,
   [
     "#demo.innerHTML = 'Hello World!'",
