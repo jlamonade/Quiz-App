@@ -293,7 +293,10 @@ function Highscore(name, score) {
 }
 
 function saveHighScoreToArray() {
-  var name = document.querySelector("#name").value;
+  var name = document.querySelector("#name").value.toUpperCase();
+  if (!name) {
+    name = "ANO";
+  }
   var highScoreObject = new Highscore(name, currentScore);
   highScoresArray.push(highScoreObject);
   sortHighscoreArray();
@@ -302,7 +305,7 @@ function saveHighScoreToArray() {
 
 function sortHighscoreArray() {
   highScoresArray.sort((object1, object2) => {
-    return object1.score > object2.score ? 1 : -1;
+    return object1.score > object2.score ? -1 : 1;
   });
 }
 
@@ -311,10 +314,12 @@ function saveHighscoreToLocalStorage() {
 }
 
 function populateHighscores() {
-  if (highScoresArray.length > 0) {
-    for (var i = 0; i < highScoresArray.length; i++) {
+  highscoresList.innerHTML = "";
+  highscoresTop10 = highScoresArray.slice(0, 10);
+  if (highscoresTop10.length > 0) {
+    for (var i = 0; i < highscoresTop10.length; i++) {
       var highScoreLi = document.createElement("li");
-      highScoreLi.innerHTML = `${highScoresArray[i].name}: ${highScoresArray[i].score}`;
+      highScoreLi.innerHTML = `<span>${highscoresTop10[i].name}</span><span>${highscoresTop10[i].score}</span>`;
       highscoresList.appendChild(highScoreLi);
     }
   }

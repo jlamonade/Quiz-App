@@ -139,16 +139,21 @@ h3 {
 
 .highscores ul {
     list-style-type: none;
+    margin: 30px 100px;
 }
 
 .highscores ul li {
-    margin: 15px 0;
-    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px auto;
     padding: 10px;
     border-radius: 5px;
     background: #D0DEE5;
-    cursor: pointer;
-    text-align: center;
+}
+
+.highscores ul li span {
+    font-size: 2rem;
+    margin: auto 10px;
 }
 
 #high-score-title {
