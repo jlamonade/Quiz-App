@@ -14,15 +14,12 @@ var scoreDiv = document.querySelector(".score");
 var currentScoreSpan = document.querySelector(".current-score");
 var timer = document.querySelector(".timer");
 var highScoresDiv = document.querySelector(".highscores");
-var highscoresList = document.querySelector(".scores-list")
+var highscoresList = document.querySelector(".scores-list");
 var formDiv = document.querySelector(".form");
 var formInputValue = document.querySelector("#name").value;
 var submitButton = document.querySelector("#submit");
 
 // Build =============================================================
-
-
-
 
 // Starting Data =====================================================
 
@@ -30,8 +27,10 @@ var timeLeft = 100;
 var questionIndexCounter = 0;
 var currentScore = 0;
 var questionList = [];
-var highScoresArray = (localStorage.getItem("highscores")) ? JSON.parse(localStorage.getItem("highscores")) : [];
-populateHighscores();
+var highScoresArray = localStorage.getItem("highscores")
+  ? JSON.parse(localStorage.getItem("highscores"))
+  : []; // return an empty string if localStorage does not have highscores
+populateHighscores(); // high scores need to be populated on page load
 
 // FUNCTIONS =========================================================
 
@@ -126,7 +125,6 @@ function showHighScoresButtonActions() {
   showHighScoresDiv();
   hideHighScoresButtonsDiv();
   showPlayButtonDiv();
-  // showhighscores
 }
 
 function startButtonActions() {
@@ -152,19 +150,11 @@ function playButtonActions() {
 }
 
 function submitButtonActions(event) {
-  event.preventDefault();
-  if (formInputValue) {
-    saveHighScoreToArray();
-    populateHighscores();
-    hideFormDiv();
-    showHighScoresButtonActions();
-  } else {
-    formInputValue = "ANO";
-    saveHighScoreToArray();
-    populateHighscores();
-    hideFormDiv();
-    showHighScoresButtonActions();
-  }
+  event.preventDefault(); // prevents submit button from refreshing page
+  saveHighScoreToArray();
+  populateHighscores();
+  hideFormDiv();
+  showHighScoresButtonActions();
 }
 
 // TIMER FUNCTION
@@ -214,6 +204,7 @@ function addQuestionToList(question, answers, correctAnswer) {
 // QUIZ FUNCTIONS
 
 function resetScore() {
+  // score needs to be reset after every game
   currentScore = 0;
   currentScoreSpan.textContent = "0";
 }
@@ -288,6 +279,7 @@ function getNextQuestion() {
 // HIGH SCORE FUNCTIONS
 
 function Highscore(name, score) {
+  // Highscore constructor
   this.name = name;
   this.score = score;
 }
@@ -295,6 +287,7 @@ function Highscore(name, score) {
 function saveHighScoreToArray() {
   var name = document.querySelector("#name").value.toUpperCase();
   if (!name) {
+    // if user does not enter name then default value of "ANO" will be entered
     name = "ANO";
   }
   var highScoreObject = new Highscore(name, currentScore);
@@ -310,14 +303,16 @@ function sortHighscoreArray() {
 }
 
 function saveHighscoreToLocalStorage() {
+  // saves highScoresArray as a string into localStorage
   localStorage.setItem("highscores", JSON.stringify(highScoresArray));
 }
 
 function populateHighscores() {
   highscoresList.innerHTML = "";
-  highscoresTop10 = highScoresArray.slice(0, 10);
+  highscoresTop10 = highScoresArray.slice(0, 10); // to select only top 10 scores
   if (highscoresTop10.length > 0) {
     for (var i = 0; i < highscoresTop10.length; i++) {
+      // creates a new li element and appends it as a child to highscoresList
       var highScoreLi = document.createElement("li");
       highScoreLi.innerHTML = `<span>${highscoresTop10[i].name}</span><span>${highscoresTop10[i].score}</span>`;
       highscoresList.appendChild(highScoreLi);
@@ -325,18 +320,14 @@ function populateHighscores() {
   }
 }
 
-function showHighScores() {
-  
-}
-
 // INITIALIZATION ====================================================
 
 startButton.addEventListener("click", startButtonActions);
 highScoresButtonDiv.addEventListener("click", showHighScoresButtonActions);
 playButtonDiv.addEventListener("click", playButtonActions);
-submitButton.addEventListener("click", function(event) {
+submitButton.addEventListener("click", function (event) {
   submitButtonActions(event);
-})
+});
 
 for (var i = 0; i < answerChoices.length; i++) {
   answerChoices[i].addEventListener("click", function () {
