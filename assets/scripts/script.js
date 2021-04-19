@@ -24,6 +24,7 @@ var timeLeft = 100;
 var questionIndexCounter = 0;
 var currentScore = 0;
 var questionList = [];
+var highScoresArray = [];
 
 // FUNCTIONS =========================================================
 
@@ -141,6 +142,10 @@ function playButtonActions() {
   hidePlayButtonDiv();
   hideHighScoresDiv();
   showStartDiv();
+}
+
+function submitHighscoreOptions() {
+  return
 }
 
 // TIMER FUNCTION
@@ -268,8 +273,16 @@ function Highscore(name, score) {
   this.score = score;
 }
 
-function saveHighScore() {
-  // write high score to external file
+function saveHighScoreToArray(name) {
+  var highScoreObject = new Highscore(name, currentScore);
+  highScoreArray.push(highScoreObject);
+  sortHighScoreArray();
+}
+
+function sortHighScoreArray() {
+  highScoreArray.sort((object1, object2) => {
+    return object1.score > object2.score ? 1 : -1;
+  });
 }
 
 function showHighScores() {
