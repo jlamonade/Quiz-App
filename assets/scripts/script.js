@@ -308,7 +308,7 @@ function saveHighscoreToLocalStorage() {
 }
 
 function populateHighscores() {
-  highscoresList.innerHTML = "";
+  highscoresList.textContent = "";
   highscoresTop10 = highScoresArray.slice(0, 10); // to select only top 10 scores
   if (highscoresTop10.length > 0) {
     for (var i = 0; i < highscoresTop10.length; i++) {
@@ -359,7 +359,6 @@ addQuestionToList(
 );
 addQuestionToList(
   `What is the correct JavaScript syntax to change the content of the HTML element below?
-  <br/>
   <p id='demo'>This is a demonstration.</p>`,
   [
     "#demo.innerHTML = 'Hello World!'",
