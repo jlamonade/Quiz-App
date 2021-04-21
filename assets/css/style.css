@@ -72,6 +72,12 @@ main {
 
 /* start button selectors */
 
+.instructions {
+    font-size: 1.5rem;
+    margin: 50px;
+    line-height: 2rem;
+}
+
 .start-btn {
     text-align: center;
     font-size: 5rem;
