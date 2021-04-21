@@ -218,7 +218,7 @@ function populateQuestionElements() {
   */
   var chosenQuestion = getNextQuestion();
   var correctIndex = chosenQuestion.correctAnswer;
-  questionText.innerHTML = chosenQuestion.question;
+  questionText.textContent = chosenQuestion.question;
   for (var i = 0; i < answerChoices.length; i++) {
     answerChoices[i].textContent = chosenQuestion.answers[i];
     answerChoices[i].setAttribute("data-correct", "false");
@@ -296,6 +296,11 @@ function saveHighScoreToArray() {
   saveHighscoreToLocalStorage();
 }
 
+function clearHighScores() {
+    localStorage.clear();
+    highscoresList.innerHTML = "";
+}
+
 function sortHighscoreArray() {
   highScoresArray.sort((object1, object2) => {
     return object1.score > object2.score ? -1 : 1;
@@ -308,7 +313,7 @@ function saveHighscoreToLocalStorage() {
 }
 
 function populateHighscores() {
-  highscoresList.textContent = "";
+  highscoresList.innerHTML = "";
   highscoresTop10 = highScoresArray.slice(0, 10); // to select only top 10 scores
   if (highscoresTop10.length > 0) {
     for (var i = 0; i < highscoresTop10.length; i++) {
