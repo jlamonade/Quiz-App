@@ -18,6 +18,7 @@ var highscoresList = document.querySelector(".scores-list");
 var formDiv = document.querySelector(".form");
 var formInputValue = document.querySelector("#name").value;
 var submitButton = document.querySelector("#submit");
+var clearButton = document.querySelector("#clear");
 
 // Build =============================================================
 
@@ -296,7 +297,8 @@ function saveHighScoreToArray() {
   saveHighscoreToLocalStorage();
 }
 
-function clearHighScores() {
+function clearHighScores(event) {
+    event.preventDefault();
     localStorage.clear();
     highscoresList.innerHTML = "";
 }
@@ -333,6 +335,7 @@ playButtonDiv.addEventListener("click", playButtonActions);
 submitButton.addEventListener("click", function (event) {
   submitButtonActions(event);
 });
+clearButton.addEventListener("click", clearHighScores);
 
 for (var i = 0; i < answerChoices.length; i++) {
   answerChoices[i].addEventListener("click", function () {
