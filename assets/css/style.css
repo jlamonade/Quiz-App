@@ -141,6 +141,12 @@ h3 {
 
 .highscores {
     display: none;
+    text-align: center;
+}
+
+#clear {
+    font-size: 2rem;
+    margin: 10px;
 }
 
 .highscores ul {
